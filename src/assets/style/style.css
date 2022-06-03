@@ -1,0 +1,516 @@
+@import url(fonts.css);
+
+:root {
+    --primaryColor: #E3474D;
+    --secondaryColor: #000;
+    --primaryFont: 'Jost', sans-serif;
+    --secondaryFont: 'A Love of Thunder';
+}
+
+body {
+    font-family: var(--primaryFont);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--secondaryFont);
+}
+
+.primaryColor {
+    color: var(--primaryColor);
+}
+
+.secondaryColor {
+    color: var(--secondaryColor);
+}
+
+.grayColor {
+    color: #b2b2b2;
+}
+
+.fRegular {
+    font-weight: 400;
+}
+
+.fBold {
+    font-weight: 700;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+
+.notBtn {
+    background: #fff0;
+    border: none;
+}
+
+.pageTitle {
+    font-size: 36px;
+    color: #000;
+}
+
+.sectionTitle {
+    font-size: 22px;
+    color: #000;
+}
+
+.secondaryWrapper {
+    color: #fff;
+    background: var(--primaryColor);
+    margin: 0px -2.3rem;
+    padding: 0.5rem 2rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.secondaryTitle {
+    font-size: 26px;
+    margin: 0;
+}
+
+.idBar {
+    font-size: 16px;
+    margin: 0;
+}
+
+.backTitleWrap {
+    display: flex;
+    align-items: center;
+}
+
+.backTitleWrap button {
+    font-size: 20px;
+}
+
+.dashCard {
+    background: #fff;
+    border-radius: 10px;
+}
+
+
+
+
+
+.userIimageFrame {
+    display: table;
+    width: 120px;
+    height: 120px;
+    border: 2px solid #e4e4e4;
+    border-radius: 99px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.userImage {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 99px;
+}
+
+.userIimageFrame .uploadCamera {
+    font-size: 14px;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: var(--primaryColor);
+    color: #fff;
+    border: none;
+    border-radius: 99px;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.uploadInput {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    border-radius: 99px;
+    width: 30px;
+    height: 30px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.mainLabel {
+    font-family: 'A Love of Thunder';
+    font-size: 16px;
+    font-weight: 400;
+    color: #999999;
+    display: block;
+    word-break: break-word;
+}
+
+.mainText {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    word-break: break-word;
+}
+
+/*---------- Custom Scrollbar Start ----------*/
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #e0e0e0;
+    border-radius: 0px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--primaryColor);
+    border-radius: 0px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primaryColor);
+}
+
+/*---------- Custom Scrollbar End ----------*/
+
+
+
+
+
+
+/*---------- Input Css Start ----------*/
+.siteLabel {
+    font-size: 18px;
+    color: #000;
+    font-weight: 500;
+    margin-bottom: 5px;
+    padding-left: 1.5rem;
+}
+
+.siteInput {
+    display: block;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    font-weight: 400;
+    padding: 12px 20px;
+    font-size: 15px;
+    color: #000;
+    width: 100%;
+    resize: none;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    border-radius: 99px;
+    -moz-appearance: none;
+}
+
+.siteInput::placeholder {
+    color: #b2b2b2;
+}
+
+textarea.siteInput {
+    border-radius: 10px;
+}
+
+/*---------- Input Css End ----------*/
+
+
+
+
+
+
+
+/*---------- Custom Modal End ----------*/
+.closeModal {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    border: 3px solid #000;
+    border-radius: 99px;
+    width: 35px;
+    height: 35px;
+    line-height: 30px;
+    text-align: center;
+    background: #fff;
+    font-size: 16px;
+}
+
+.customModal {
+    padding: 1rem 2rem;
+}
+
+.modalHeading {
+    text-align: center;
+}
+
+/*---------- Custom Modal End ----------*/
+
+
+
+
+/*---------- Table Css Start ----------*/
+.customTable {
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 0px 20px;
+    vertical-align: middle;
+    padding: 0px 0.2rem;
+}
+
+.customTable th {
+    text-transform: uppercase;
+}
+
+.customTable tbody tr {
+    box-shadow: 0px 0px 6px rgb(0 0 0 / 12%);
+    border-radius: 10px;
+}
+
+.customTable tr th, .customTable tr td {
+    padding: 1rem 2.5rem;
+}
+
+.customTable tr th {
+    white-space: nowrap;
+}
+
+.customTable tbody tr td {
+    font-size: 15px;
+    font-weight: 500;
+    color: #999;
+}
+
+.customTable .dropdown-menu {
+    border: none !important;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px #e0e0e0;
+}
+
+.customTable .dropdown-item:hover,
+.customTable .dropdown-item.active,
+.customTable .dropdown-item:active {
+    color: #fff !important;
+    background-color: var(--primaryColor) !important;
+}
+
+.customTable .dropdown-item:hover p,
+.customTable .dropdown-item:hover span,
+.customTable .dropdown-item:hover svg path {
+    color: #fff !important;
+    fill: #fff;
+}
+
+.customPagination {
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 10px #ccc;
+}
+
+.customPagination .page-item .page-link {
+    color: #000 !important;
+    border-color: #E6E1E1 !important;
+    padding: 0.5rem 1.2rem !important;
+}
+
+.customPagination .page-item:first-child .page-link {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.customPagination .page-item:last-child .page-link {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.customPagination .page-item.active .page-link, .customPagination .page-item:hover .page-link {
+    background: #000;
+    color: #fff !important;
+}
+
+.statusBar {
+    border: 2px dotted;
+    border-radius: 99px;
+    padding: 10px 20px;
+}
+
+.statusRandom {
+    color: #999;
+    border-color: #999;
+}
+
+.statusPending {
+    color: #EBB517;
+    border-color: #EBB517;
+}
+
+.statusDelivered {
+    color: #2FC403;
+    border-color: #2FC403;
+}
+
+.statusProcess {
+    color: #AAD205;
+    border-color: #AAD205;
+}
+
+.statusRejected {
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+/*---------- Table Css End ----------*/
+
+
+
+
+/*---------- Button Link Css Start ----------*/
+.buttonLinks {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid;
+    border-radius: 99px;
+    padding: 15px 40px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.3s linear;
+    cursor: pointer;
+    background: #fff;
+    color: var(--primaryColor);
+    border-color: var(--primaryColor);
+    box-shadow: 0px 0px 4px var(--primaryColor);
+}
+
+.buttonLinks:hover {
+    color: #fff;
+    background: var(--primaryColor);
+}
+
+/*---------- Button Link Css End ----------*/
+
+
+
+
+
+/*---------- Data Table Input Css Start ----------*/
+
+.dashLabel {
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 500;
+    color: #999;
+    flex-shrink: 0;
+}
+
+.dashInput {
+    background: #FBFBFB;
+    border: 1px solid #f1f1f1;
+    font-weight: 500;
+    padding: 12px 25px;
+    font-size: 16px;
+    color: #999;
+    width: 100%;
+    resize: none;
+    border-radius: 99px;
+    position: relative;
+}
+
+.dashInput:focus {
+    outline: none;
+}
+
+select.dashInput {
+    outline: none;
+    min-width: 200px;
+}
+
+select.dashInput.sm-dropdown {
+    min-width: unset;
+}
+
+.dashInput::placeholder {
+    color: #999;
+}
+
+.dashSearchWrap {
+    position: relative;
+    display: inline-block;
+    width: 220px;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    width: auto;
+}
+
+.searchIcon svg path {
+    fill: #999;
+}
+
+.dashInput[type="search"] {
+    padding-right: 40px;
+}
+
+.dashInput[type="search"]::-webkit-search-decoration, .dashInput[type="search"]::-webkit-search-cancel-button, .dashInput[type="search"]::-webkit-search-results-button, .dashInput[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+
+.dashInput[type=search]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.dashInput[type=search]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/*---------- Data Table Input Css End ----------*/
+
+
+
+@media screen and (max-width: 1399px) {
+    .rightInput {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .rightInput {
+        width: 100%;
+    }
+
+    .pageTitle {
+        font-size: 26px;
+    }
+
+    .sectionTitle {
+        font-size: 20px;
+        color: #000;
+    }
+
+    .secondaryTitle {
+        font-size: 20px;
+    }
+
+    .buttonLinks {
+        font-size: 14px;
+        border: 1px solid;
+        padding: 12px 30px;
+    }
+}

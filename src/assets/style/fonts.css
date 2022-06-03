@@ -1,0 +1,17 @@
+/* Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;900&display=swap');
+
+@font-face {
+    font-family: 'A Love of Thunder';
+    src: url('../fonts/ALoveofThunder.eot');
+    src: url('../fonts/ALoveofThunder.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/ALoveofThunder.woff2') format('woff2'),
+        url('../fonts/ALoveofThunder.woff') format('woff'),
+        url('../fonts/ALoveofThunder.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Fonts */
