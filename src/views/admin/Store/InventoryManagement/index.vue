@@ -12,7 +12,7 @@
     <div class="row mb-3">
       <div class="col-12 mb-4">
         <div class="secondaryWrapper">
-          <h2 class="secondaryTitle">Store Listing</h2>
+          <h2 class="secondaryTitle">Inventory Management</h2>
         </div>
       </div>
       <div class="col-12">

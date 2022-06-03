@@ -33,7 +33,9 @@
                     class="userImage img-fluid"
                   />
                 </div>
+                <div class="info">
                 <h6 class="text-uppercase">Mark Carson</h6>
+                </div>
               </div>
             </div>
             <div class="col-12 mb-3">

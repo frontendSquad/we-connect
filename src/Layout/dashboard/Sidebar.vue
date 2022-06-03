@@ -86,7 +86,7 @@
         >
           <li class="nav-item">
             <div class="navContent">
-              <router-link to="/admin/Store" class="nav-link text-light">
+              <router-link to="/admin/store" class="nav-link text-light">
                 <span>Store</span></router-link
               >
             </div>
@@ -94,7 +94,7 @@
           <li class="nav-item">
             <div class="navContent">
               <router-link
-                to="/admin/vendor/vendor-approval"
+                to="/admin/store/inventory-management"
                 class="nav-link text-light"
               >
                 <span>Inventory Management</span></router-link

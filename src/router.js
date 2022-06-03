@@ -31,6 +31,8 @@ import Store from "./views/admin/Store/Store/";
 import ViewStore from "./views/admin/Store/Store/ViewStore.vue";
 import EditStore from "./views/admin/Store/Store/EditStore.vue";
 
+import InventoryManagement from "./views/admin/Store/InventoryManagement/";
+
 Vue.use(Router);
 
 export default new Router({
@@ -142,6 +144,11 @@ export default new Router({
                 name: 'EditStore',
                 component: EditStore,
                 path: 'store/edit-store',
+            },
+            {
+                name: 'InventoryManagement',
+                component: InventoryManagement,
+                path: 'store/inventory-management',
             },
             
             
