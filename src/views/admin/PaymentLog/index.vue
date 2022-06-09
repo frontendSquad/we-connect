@@ -1,23 +1,45 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xl-6 mb-3">
+      <div class="col-12 mb-3">
         <div class="backTitleWrap">
           <div class="pageTitleInner">
-            <h1 class="pageTitle">Vendor Management</h1>
+            <h1 class="pageTitle">Payment Log</h1>
           </div>
         </div>
-      </div>
-      <div class="col-xl-6 mb-3 text-end">
-        <router-link to="/admin/vendor/vendor-listing/blocked-vendor" class="buttonLinks buttonLinkRed"
-          >Blocked Vendors</router-link
-        >
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-12 mb-4">
         <div class="secondaryWrapper">
-        <h2 class="secondaryTitle">Vendor Listing</h2>
+          <h2 class="secondaryTitle">Logs</h2>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="d-lg-flex align-items-end justify-content-end">
+          <div class="userInput mb-3">
+            <div class="dataTables_filter">
+              <div class="mainDetail">
+                <label for="" class="dashLabel mb-2 mb-xl-0 me-1"
+                  >Payment Month</label
+                >
+                <select class="d-inline-block dashInput">
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-12">
@@ -86,18 +108,18 @@
           <table class="table table-borderless customTable">
             <thead>
               <tr>
-                <th v-for="(heading, index) in VendorLisitingHead" :key="index">
+                <th v-for="(heading, index) in paymentHead" :key="index">
                   {{ heading }}
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in VendorLisiting" :key="index">
+              <tr v-for="(item, index) in paymentList" :key="index">
                 <td>{{ index + 1 }}</td>
-                <td>{{ item.id }}</td>
-                <td>{{ item.vendorname }}</td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.date }}</td>
+                <td>{{ item.store }}</td>
+                <td>{{ item.vendor }}</td>
+                <td>{{ item.month }}</td>
+                <td>${{ item.total }}</td>
                 <td>
                   <div class="remove-box">
                     <b-dropdown
@@ -117,7 +139,10 @@
                       </template>
                       <b-dropdown-item>
                         <router-link
-                         :to="{name:'ViewVendor', params:{ status: item.id }}"
+                          :to="{
+                            name: 'PaymentTransaction',
+                            params: { status: item.id },
+                          }"
                           class="text-decoration-none"
                         >
                           <div class="dropdownContent">
@@ -129,50 +154,12 @@
                                 />
                               </div>
                               <div class="mediaRight">
-                                <span class="text-dark">View Profile</span>
+                                <span class="text-dark">View</span>
                               </div>
                             </div>
                           </div>
                         </router-link>
                       </b-dropdown-item>
-                      <b-dropdown-item>
-                        <router-link
-                          :to="{name:'EditVendor', params:{ status: item.id }}"
-                          class="text-decoration-none"
-                        >
-                          <div class="dropdownContent">
-                            <div class="d-flex align-items-center">
-                              <div class="mediaLeft">
-                                <font-awesome-icon
-                                  :icon="['fas', 'pen-to-square']"
-                                  class="text-dark"
-                                />
-                              </div>
-                              <div class="mediaRight">
-                                <span class="text-dark">Edit</span>
-                              </div>
-                            </div>
-                          </div>
-                        </router-link>
-                      </b-dropdown-item>
-                      <b-dropdown-item-button
-                        class="notBtn"
-                        @click="$bvModal.show('blockVendor')"
-                      >
-                        <div class="dropdownContent">
-                          <div class="d-flex align-items-center">
-                            <div class="mediaLeft">
-                              <font-awesome-icon
-                                :icon="['fas', 'ban']"
-                                class="text-dark"
-                              />
-                            </div>
-                            <div class="mediaRight">
-                              <span class="text-dark">Block</span>
-                            </div>
-                          </div>
-                        </div>
-                      </b-dropdown-item-button>
                     </b-dropdown>
                   </div>
                 </td>
@@ -181,7 +168,7 @@
           </table>
         </div>
       </div>
-        <div class="col-12">
+      <div class="col-12">
         <div class="row align-items-center px-3 w-100 px-4">
           <div class="col-sm-12 col-md-6 mb-sm-0 mb-3">
             <div
@@ -194,113 +181,64 @@
             </div>
           </div>
           <div class="col-sm-12 col-md-6 d-flex justify-content-end">
-            <b-pagination
-              class="customPagination"
-            ></b-pagination>
+            <b-pagination class="customPagination"></b-pagination>
           </div>
         </div>
       </div>
     </div>
-
-    <b-modal id="blockVendor" centered hide-footer hide-header>
-      <div class="customModal">
-        <div class="modalHeader">
-          <button class="closeModal" @click="$bvModal.hide('blockVendor')">
-            <font-awesome-icon :icon="['fas', 'times']" />
-          </button>
-        </div>
-        <div class="modalBody">
-          <div class="modalContent text-center">
-            <img
-              src="./../../../../assets/images/question.png"
-              alt=""
-              class="modalImage mb-3"
-            />
-            <h2 class="modalHeading">Block Vendor</h2>
-            <p class="modalText">Are you sure you want to block this vendor?</p>
-            <div class="modalForm my-4">
-              <BaseButton
-                type="button"
-                btnText="Yes"
-                class="baseButton primaryButton mx-2"
-                @click="
-                  $bvModal.hide('blockVendor');
-                  $bvModal.show('blockVendor2');
-                "
-              />
-              <BaseButton
-                type="button"
-                btnText="No"
-                class="baseButton secondaryButton mx-2"
-                @click="$bvModal.hide('blockVendor')"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </b-modal>
-
-    <BaseModal
-      modalId="blockVendor2"
-      :modalSuccess="true"
-      modalText="Vendor ABC has been Blocked."
-      btnText="Ok"
-    />
   </div>
 </template>
 
 <script>
-import BaseButton from "./../../../../components/BaseButton.vue";
-import BaseModal from "./../../../../components/BaseModal.vue";
-
 export default {
-  name: "VendorListing",
-  components: {
-    BaseButton,
-    BaseModal,
-  },
+  name: "PaymentLog",
+  components: {},
   data() {
     return {
-      VendorLisitingHead: [
+      paymentHead: [
         "S.No",
-        "Vendor ID",
+        "Store Name",
         "Vendor Name",
-        "Email Address",
-        "Registration Date",
+        "Payment Month",
+        "Total Amount",
         "Action",
       ],
-      VendorLisiting: [
+      paymentList: [
         {
           id: "001",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
-          date: "mm/dd/yyyy",
+          store: "Abc",
+          vendor: "Abc",
+          month: "mm/dd/yyyy",
+          total: "123",
         },
         {
           id: "002",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
-          date: "mm/dd/yyyy",
+          store: "Abc",
+          vendor: "Abc",
+          month: "mm/dd/yyyy",
+          total: "123",
         },
         {
           id: "003",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
-          date: "mm/dd/yyyy",
+          store: "Abc",
+          vendor: "Abc",
+          month: "mm/dd/yyyy",
+          total: "123",
         },
         {
           id: "004",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
-          date: "mm/dd/yyyy",
+          store: "Abc",
+          vendor: "Abc",
+          month: "mm/dd/yyyy",
+          total: "123",
         },
         {
           id: "005",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
-          date: "mm/dd/yyyy",
+          store: "Abc",
+          vendor: "Abc",
+          month: "mm/dd/yyyy",
+          total: "123",
         },
-       
       ],
     };
   },

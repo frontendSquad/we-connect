@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="col-xl-6 mb-3 text-end">
-        <router-link to="/admin/vendor/vendor-approval/rejected-vendor" class="buttonLinks"
+        <router-link to="/admin/vendor/vendor-approval/rejected-vendor" class="buttonLinks buttonLinkRed"
           >Rejected Vendors</router-link
         >
       </div>

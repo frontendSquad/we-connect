@@ -1,79 +1,28 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12 mb-3">
+      <div class="col-xl-6 mb-3">
         <div class="backTitleWrap">
           <div class="pageTitleInner">
             <h1 class="pageTitle">Store</h1>
           </div>
         </div>
       </div>
+      <div class="col-xl-6 mb-3 text-end">
+        <router-link
+          to="/admin/store/category-management/add-category"
+          class="buttonLinks buttonLinkGray"
+          >Add</router-link
+        >
+      </div>
     </div>
     <div class="row mb-3">
       <div class="col-12 mb-4">
         <div class="secondaryWrapper">
-          <h2 class="secondaryTitle">Inventory Management</h2>
+          <h2 class="secondaryTitle">Category Management</h2>
         </div>
       </div>
       <div class="col-12">
-        <div class="dashCard px-lg-4 px-3 py-lg-4 py-3 mb-3">
-          <h3 class="sectionTitle mb-3">Filter By</h3>
-          <div class="row">
-            <div class="col-xl-3 col-lg-6 mb-3">
-              <select name="vendor" id="" class="siteInput">
-                <option value="all" selected hidden disabled>
-                  All Vendors
-                </option>
-                <option value="1">Abc</option>
-                <option value="2">Def</option>
-                <option value="3">Klm</option>
-                <option value="4">Zyz</option>
-              </select>
-            </div>
-            <div class="col-xl-3 col-lg-6 mb-3">
-              <select name="category" id="" class="siteInput">
-                <option value="all" selected hidden disabled>
-                  All Categories
-                </option>
-                <option value="1">Category 1</option>
-                <option value="2">Category 2</option>
-                <option value="3">Category 3</option>
-                <option value="4">Category 4</option>
-              </select>
-            </div>
-            <div class="col-xl-3 col-lg-6 mb-3">
-              <select name="" id="" class="siteInput">
-                <option value="all" selected hidden disabled>
-                  Availabilty Status
-                </option>
-                <option value="1">In Stock</option>
-                <option value="2">Sold Out</option>
-              </select>
-            </div>
-            <div class="col-xl-3 col-lg-6 mb-3">
-              <BaseButton
-                type="button"
-                btnText="Search"
-                class="baseButton primaryButton"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12">
-        <div class="d-flex align-items-center gap-3 mb-3">
-          <div class="userIimageFrame my-3">
-            <img
-              src="./../../../../assets/images/userPlaceholder.png"
-              alt="User Image"
-              class="userImage img-fluid"
-            />
-          </div>
-          <div class="info">
-            <h6 class="text-uppercase">Mark Carson</h6>
-            <router-link to="#" class="cyanColor">View Profile</router-link>
-          </div>
-        </div>
         <div class="user-listing-top">
           <div class="d-xl-flex align-items-end justify-content-between">
             <div class="userInput mb-3">
@@ -139,37 +88,21 @@
           <table class="table table-borderless customTable">
             <thead>
               <tr>
-                <th
-                  v-for="(heading, index) in inventoryManagementHead"
-                  :key="index"
-                >
+                <th v-for="(heading, index) in categoryHead" :key="index">
                   {{ heading }}
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in inventoryManagement" :key="index">
+              <tr v-for="(item, index) in categoryList" :key="index">
                 <td>{{ item.id }}</td>
-                <td>{{ item.vendorname }}</td>
-                <td>{{ item.productname }}</td>
-                <td>{{ item.category }}</td>
-                <td>${{ item.price }}</td>
+                <td>{{ item.categoryName }}</td>
+                <td>{{ item.products }}</td>
                 <td>
-                  <div v-if="item.astatus">
-                    <span class="statusBar statusDelivered">In-Stock</span>
-                  </div>
-                  <div v-else>
-                    <span class="statusBar statusRejected">Sold Out</span>
-                  </div>
-                </td>
-                <td>{{ item.instock }}</td>
-                <td>
-                  <div v-if="item.status">
-                    <span class="statusBar statusDelivered">Active</span>
-                  </div>
-                  <div v-else>
-                    <span class="statusBar statusRandom">Inactive</span>
-                  </div>
+                  <span v-if="item.status" class="statusBar statusDelivered"
+                    >Active</span
+                  >
+                  <span v-else class="statusRandom statusBar">Inactive</span>
                 </td>
                 <td>
                   <div class="remove-box">
@@ -190,27 +123,10 @@
                       </template>
                       <b-dropdown-item>
                         <router-link
-                          to="/admin/store/inventory-management/view-product"
-                          class="text-decoration-none"
-                        >
-                          <div class="dropdownContent">
-                            <div class="d-flex align-items-center">
-                              <div class="mediaLeft">
-                                <font-awesome-icon
-                                  :icon="['fas', 'eye']"
-                                  class="text-dark"
-                                />
-                              </div>
-                              <div class="mediaRight">
-                                <span class="text-dark">View</span>
-                              </div>
-                            </div>
-                          </div>
-                        </router-link>
-                      </b-dropdown-item>
-                      <b-dropdown-item>
-                        <router-link
-                          to="/admin/store/inventory-management/edit-product"
+                          :to="{
+                            name: 'EditCategory',
+                            params: { status: item.id },
+                          }"
                           class="text-decoration-none"
                         >
                           <div class="dropdownContent">
@@ -228,34 +144,11 @@
                           </div>
                         </router-link>
                       </b-dropdown-item>
-                      <b-dropdown-item>
-                        <router-link
-                          :to="{
-                            name: 'RatingAndReviews',
-                            params: { status: item.id },
-                          }"
-                          class="text-decoration-none"
-                        >
-                          <div class="dropdownContent">
-                            <div class="d-flex align-items-center">
-                              <div class="mediaLeft">
-                                <font-awesome-icon
-                                  :icon="['fas', 'star']"
-                                  class="text-dark"
-                                />
-                              </div>
-                              <div class="mediaRight">
-                                <span class="text-dark">Rating</span>
-                              </div>
-                            </div>
-                          </div>
-                        </router-link>
-                      </b-dropdown-item>
                       <b-dropdown-item-button class="notBtn">
                         <div
                           class="dropdownContent"
                           v-if="item.status"
-                          @click="$bvModal.show('inactiveInventory')"
+                          @click="$bvModal.show('inactiveCategory')"
                         >
                           <div class="d-flex align-items-center">
                             <div class="mediaLeft">
@@ -272,7 +165,7 @@
                         <div
                           class="dropdownContent"
                           v-else
-                          @click="$bvModal.show('activeInventory')"
+                          @click="$bvModal.show('activeCategory')"
                         >
                           <div class="d-flex align-items-center">
                             <div class="mediaLeft">
@@ -314,13 +207,10 @@
       </div>
     </div>
 
-    <b-modal id="inactiveInventory" centered hide-footer hide-header>
+    <b-modal id="inactiveCategory" centered hide-footer hide-header>
       <div class="customModal">
         <div class="modalHeader">
-          <button
-            class="closeModal"
-            @click="$bvModal.hide('inactiveInventory')"
-          >
+          <button class="closeModal" @click="$bvModal.hide('inactiveCategory')">
             <font-awesome-icon :icon="['fas', 'times']" />
           </button>
         </div>
@@ -331,25 +221,23 @@
               alt=""
               class="modalImage mb-3"
             />
-            <h2 class="modalHeading">Inactive Product</h2>
-            <p class="modalText">
-              Are you sure you want to inactive abc product?
-            </p>
+            <h2 class="modalHeading">Inactivate Category</h2>
+            <p class="modalText">Are you sure you want to inactivate abc category?</p>
             <div class="modalForm my-4">
               <BaseButton
                 type="button"
                 btnText="Yes"
                 class="baseButton primaryButton mx-2"
                 @click="
-                  $bvModal.hide('inactiveInventory');
-                  $bvModal.show('inactiveInventory2');
+                  $bvModal.hide('inactiveCategory');
+                  $bvModal.show('inactiveCategory2');
                 "
               />
               <BaseButton
                 type="button"
                 btnText="No"
                 class="baseButton secondaryButton mx-2"
-                @click="$bvModal.hide('inactiveInventory')"
+                @click="$bvModal.hide('inactiveCategory')"
               />
             </div>
           </div>
@@ -358,16 +246,16 @@
     </b-modal>
 
     <BaseModal
-      modalId="inactiveInventory2"
+      modalId="inactiveCategory2"
       :modalSuccess="true"
-      modalText="ABC product has been Inactivated."
+      modalText="The category has been inactivated."
       btnText="Ok"
     />
 
-    <b-modal id="activeInventory" centered hide-footer hide-header>
+    <b-modal id="activeCategory" centered hide-footer hide-header>
       <div class="customModal">
         <div class="modalHeader">
-          <button class="closeModal" @click="$bvModal.hide('activeInventory')">
+          <button class="closeModal" @click="$bvModal.hide('activeCategory')">
             <font-awesome-icon :icon="['fas', 'times']" />
           </button>
         </div>
@@ -378,25 +266,23 @@
               alt=""
               class="modalImage mb-3"
             />
-            <h2 class="modalHeading">Activate Product</h2>
-            <p class="modalText">
-              Are you sure you want to activate abc product?
-            </p>
+            <h2 class="modalHeading">Activate Category</h2>
+            <p class="modalText">Are you sure you want to activate abc category?</p>
             <div class="modalForm my-4">
               <BaseButton
                 type="button"
                 btnText="Yes"
                 class="baseButton primaryButton mx-2"
                 @click="
-                  $bvModal.hide('activeInventory');
-                  $bvModal.show('activeInventory2');
+                  $bvModal.hide('activeCategory');
+                  $bvModal.show('activeCategory2');
                 "
               />
               <BaseButton
                 type="button"
                 btnText="No"
                 class="baseButton secondaryButton mx-2"
-                @click="$bvModal.hide('activeInventory')"
+                @click="$bvModal.hide('activeCategory')"
               />
             </div>
           </div>
@@ -405,11 +291,12 @@
     </b-modal>
 
     <BaseModal
-      modalId="activeInventory2"
+      modalId="activeCategory2"
       :modalSuccess="true"
-      modalText="ABC product has been activated."
+      modalText="The category has been activated."
       btnText="Ok"
     />
+
   </div>
 </template>
 
@@ -418,73 +305,49 @@ import BaseButton from "./../../../../components/BaseButton.vue";
 import BaseModal from "./../../../../components/BaseModal.vue";
 
 export default {
-  name: "Store",
+  name: "CategoryManagement",
   components: {
     BaseButton,
     BaseModal,
   },
   data() {
     return {
-      inventoryManagementHead: [
+      categoryHead: [
         "S.No",
-        "Vendor Name",
-        "Product Name",
-        "Category",
-        "Price",
-        "Availabilty Status",
-        "Currently In Stock",
-        "Status",
+        "Category Name",
+        "Number of Products",
+        "Category Status",
         "Action",
       ],
-      inventoryManagement: [
+      categoryList: [
         {
-          id: "001",
-          vendorname: "Abc",
-          productname: "Abc",
-          category: "Def",
-          price: "20",
-          astatus: true,
-          instock: "90",
+          id: "01",
+          categoryName: "Category Abc",
+          products: "20",
           status: true,
         },
         {
-          id: "002",
-          vendorname: "Abc",
-          productname: "Abc",
-          category: "Def",
-          price: "20",
-          astatus: false,
-          instock: "90",
+          id: "02",
+          categoryName: "Category Abc",
+          products: "15",
           status: false,
         },
         {
-          id: "003",
-          vendorname: "Abc",
-          productname: "Abc",
-          category: "Def",
-          price: "20",
-          astatus: false,
-          instock: "90",
+          id: "03",
+          categoryName: "Category Abc",
+          products: "20",
+          status: false,
+        },
+        {
+          id: "04",
+          categoryName: "Category Abc",
+          products: "35",
           status: true,
         },
         {
-          id: "004",
-          vendorname: "Abc",
-          productname: "Abc",
-          category: "Def",
-          price: "20",
-          astatus: true,
-          instock: "90",
-          status: false,
-        },
-        {
-          id: "005",
-          vendorname: "Abc",
-          productname: "Abc",
-          category: "Def",
-          price: "20",
-          astatus: true,
-          instock: "90",
+          id: "05",
+          categoryName: "Category Abc",
+          products: "12",
           status: true,
         },
       ],

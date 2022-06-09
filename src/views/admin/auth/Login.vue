@@ -249,7 +249,7 @@ export default {
 
 
 .loginPage {
-    background: url(/src/assets/images/loginBg.png) no-repeat;
+    background: url(./../../../assets/images/loginBg.png) no-repeat;
     background-size: cover;
     background-position: center center;
     height: 100vh;

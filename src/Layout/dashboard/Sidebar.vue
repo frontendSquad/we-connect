@@ -71,7 +71,6 @@
         </ul>
       </div>
     </li>
-
     <li class="nav-item">
       <div class="navContent">
         <button
@@ -101,7 +100,64 @@
               >
             </div>
           </li>
+          <li class="nav-item">
+            <div class="navContent">
+              <router-link
+                to="/admin/store/category-management"
+                class="nav-link text-light"
+              >
+                <span>Category Management</span></router-link
+              >
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="navContent">
+              <router-link
+                to="/admin/store/variation-management"
+                class="nav-link text-light"
+              >
+                <span>Variation Management</span></router-link
+              >
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="navContent">
+              <router-link
+                to="/admin/store/order-logs"
+                class="nav-link text-light"
+              >
+                <span>Order Logs</span></router-link
+              >
+            </div>
+          </li>
         </ul>
+      </div>
+    </li>
+    <li class="nav-item navContent">
+      <div class="">
+        <router-link to="/admin/payment-log" class="nav-link text-light">
+          <font-awesome-icon :icon="['fas', 'credit-card']" /><span
+            >Payment Log</span
+          ></router-link
+        >
+      </div>
+    </li>
+    <li class="nav-item navContent">
+      <div class="">
+        <router-link to="/admin/settings" class="nav-link text-light">
+          <font-awesome-icon :icon="['fas', 'cog']" /><span
+            >Settings</span
+          ></router-link
+        >
+      </div>
+    </li>
+    <li class="nav-item navContent">
+      <div class="">
+        <router-link to="/admin/feedback" class="nav-link text-light">
+          <font-awesome-icon :icon="['fas', 'message']" /><span
+            >Feedback</span
+          ></router-link
+        >
       </div>
     </li>
   </ul>

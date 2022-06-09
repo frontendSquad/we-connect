@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="col-xl-6 mb-3 text-end">
-        <router-link to="/admin/user-management/blocked-users" class="buttonLinks"
+        <router-link to="/admin/user-management/blocked-users" class="buttonLinks buttonLinkRed"
           >Blocked Users</router-link
         >
       </div>

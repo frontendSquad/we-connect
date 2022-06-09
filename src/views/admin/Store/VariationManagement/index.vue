@@ -4,20 +4,22 @@
       <div class="col-xl-6 mb-3">
         <div class="backTitleWrap">
           <div class="pageTitleInner">
-            <h1 class="pageTitle">Vendor Management</h1>
+            <h1 class="pageTitle">Store</h1>
           </div>
         </div>
       </div>
       <div class="col-xl-6 mb-3 text-end">
-        <router-link to="/admin/vendor/vendor-listing/blocked-vendor" class="buttonLinks buttonLinkRed"
-          >Blocked Vendors</router-link
+        <router-link
+          to="/admin/store/variation-management/create-variation"
+          class="buttonLinks buttonLinkRed"
+          >Create</router-link
         >
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-12 mb-4">
         <div class="secondaryWrapper">
-        <h2 class="secondaryTitle">Vendor Listing</h2>
+          <h2 class="secondaryTitle">Variation Listing</h2>
         </div>
       </div>
       <div class="col-12">
@@ -86,18 +88,17 @@
           <table class="table table-borderless customTable">
             <thead>
               <tr>
-                <th v-for="(heading, index) in VendorLisitingHead" :key="index">
+                <th v-for="(heading, index) in variationHead" :key="index">
                   {{ heading }}
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in VendorLisiting" :key="index">
-                <td>{{ index + 1 }}</td>
+              <tr v-for="(item, index) in variationList" :key="index">
                 <td>{{ item.id }}</td>
-                <td>{{ item.vendorname }}</td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.date }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.type }}</td>
+                <td>{{ item.created }}</td>
                 <td>
                   <div class="remove-box">
                     <b-dropdown
@@ -115,60 +116,20 @@
                           />
                         </div>
                       </template>
-                      <b-dropdown-item>
-                        <router-link
-                         :to="{name:'ViewVendor', params:{ status: item.id }}"
-                          class="text-decoration-none"
+                      <b-dropdown-item-button class="notBtn">
+                        <div
+                          class="dropdownContent"
+                          @click="$bvModal.show('deleteVariation')"
                         >
-                          <div class="dropdownContent">
-                            <div class="d-flex align-items-center">
-                              <div class="mediaLeft">
-                                <font-awesome-icon
-                                  :icon="['fas', 'eye']"
-                                  class="text-dark"
-                                />
-                              </div>
-                              <div class="mediaRight">
-                                <span class="text-dark">View Profile</span>
-                              </div>
-                            </div>
-                          </div>
-                        </router-link>
-                      </b-dropdown-item>
-                      <b-dropdown-item>
-                        <router-link
-                          :to="{name:'EditVendor', params:{ status: item.id }}"
-                          class="text-decoration-none"
-                        >
-                          <div class="dropdownContent">
-                            <div class="d-flex align-items-center">
-                              <div class="mediaLeft">
-                                <font-awesome-icon
-                                  :icon="['fas', 'pen-to-square']"
-                                  class="text-dark"
-                                />
-                              </div>
-                              <div class="mediaRight">
-                                <span class="text-dark">Edit</span>
-                              </div>
-                            </div>
-                          </div>
-                        </router-link>
-                      </b-dropdown-item>
-                      <b-dropdown-item-button
-                        class="notBtn"
-                        @click="$bvModal.show('blockVendor')"
-                      >
-                        <div class="dropdownContent">
                           <div class="d-flex align-items-center">
                             <div class="mediaLeft">
                               <font-awesome-icon
-                                :icon="['fas', 'ban']"
+                                :icon="['fas', 'trash']"
                                 class="text-dark"
                               />
                             </div>
                             <div class="mediaRight">
-                              <span class="text-dark">Block</span>
+                              <span class="text-dark">Delete</span>
                             </div>
                           </div>
                         </div>
@@ -181,7 +142,7 @@
           </table>
         </div>
       </div>
-        <div class="col-12">
+      <div class="col-12">
         <div class="row align-items-center px-3 w-100 px-4">
           <div class="col-sm-12 col-md-6 mb-sm-0 mb-3">
             <div
@@ -194,18 +155,16 @@
             </div>
           </div>
           <div class="col-sm-12 col-md-6 d-flex justify-content-end">
-            <b-pagination
-              class="customPagination"
-            ></b-pagination>
+            <b-pagination class="customPagination"></b-pagination>
           </div>
         </div>
       </div>
     </div>
 
-    <b-modal id="blockVendor" centered hide-footer hide-header>
+    <b-modal id="deleteVariation" centered hide-footer hide-header>
       <div class="customModal">
         <div class="modalHeader">
-          <button class="closeModal" @click="$bvModal.hide('blockVendor')">
+          <button class="closeModal" @click="$bvModal.hide('deleteVariation')">
             <font-awesome-icon :icon="['fas', 'times']" />
           </button>
         </div>
@@ -216,23 +175,23 @@
               alt=""
               class="modalImage mb-3"
             />
-            <h2 class="modalHeading">Block Vendor</h2>
-            <p class="modalText">Are you sure you want to block this vendor?</p>
+            <h2 class="modalHeading">Alert</h2>
+            <p class="modalText">Are you sure you want to delete this variation?</p>
             <div class="modalForm my-4">
               <BaseButton
                 type="button"
                 btnText="Yes"
                 class="baseButton primaryButton mx-2"
                 @click="
-                  $bvModal.hide('blockVendor');
-                  $bvModal.show('blockVendor2');
+                  $bvModal.hide('deleteVariation');
+                  $bvModal.show('deleteVariation2');
                 "
               />
               <BaseButton
                 type="button"
                 btnText="No"
                 class="baseButton secondaryButton mx-2"
-                @click="$bvModal.hide('blockVendor')"
+                @click="$bvModal.hide('deleteVariation')"
               />
             </div>
           </div>
@@ -241,11 +200,13 @@
     </b-modal>
 
     <BaseModal
-      modalId="blockVendor2"
+      modalId="deleteVariation2"
       :modalSuccess="true"
-      modalText="Vendor ABC has been Blocked."
+      modalText="Variation has been deleted."
       btnText="Ok"
     />
+
+
   </div>
 </template>
 
@@ -254,53 +215,51 @@ import BaseButton from "./../../../../components/BaseButton.vue";
 import BaseModal from "./../../../../components/BaseModal.vue";
 
 export default {
-  name: "VendorListing",
+  name: "CategoryManagement",
   components: {
     BaseButton,
     BaseModal,
   },
   data() {
     return {
-      VendorLisitingHead: [
+      variationHead: [
         "S.No",
-        "Vendor ID",
-        "Vendor Name",
-        "Email Address",
-        "Registration Date",
+        "Name",
+        "Type",
+        "Created",
         "Action",
       ],
-      VendorLisiting: [
+      variationList: [
         {
-          id: "001",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
-          date: "mm/dd/yyyy",
+          id: "01",
+          name: "Abc",
+          type: "Radio Button",
+          created: "mm/dd/yyyy",
         },
         {
-          id: "002",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
-          date: "mm/dd/yyyy",
+          id: "02",
+          name: "Abc",
+          type: "Radio Button",
+          created: "mm/dd/yyyy",
         },
         {
-          id: "003",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
-          date: "mm/dd/yyyy",
+          id: "03",
+          name: "Abc",
+          type: "Radio Button",
+          created: "mm/dd/yyyy",
         },
         {
-          id: "004",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
-          date: "mm/dd/yyyy",
+          id: "04",
+          name: "Abc",
+          type: "Radio Button",
+          created: "mm/dd/yyyy",
         },
         {
-          id: "005",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
-          date: "mm/dd/yyyy",
+          id: "05",
+          name: "Abc",
+          type: "Radio Button",
+          created: "mm/dd/yyyy",
         },
-       
       ],
     };
   },

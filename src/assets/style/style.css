@@ -15,12 +15,24 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--secondaryFont);
 }
 
+.primaryFont {
+    font-family: var(--primaryFont);
+}
+
+.secondaryFont {
+    font-family: var(--secondaryFont);
+}
+
 .primaryColor {
     color: var(--primaryColor);
 }
 
 .secondaryColor {
     color: var(--secondaryColor);
+}
+
+.cyanColor {
+    color: #07DCEC;
 }
 
 .grayColor {
@@ -86,9 +98,77 @@ h1, h2, h3, h4, h5, h6 {
 
 .dashCard {
     background: #fff;
-    border-radius: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 6px #e0e0e0;
 }
 
+
+
+
+
+
+.productImage {
+    position: relative;
+    aspect-ratio: 2/1;
+}
+
+.productImage img {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 2/1;
+}
+
+.mainProductImage img {
+    max-height: 360px;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 2/1;
+}
+
+.secondaryProductImage img {
+    max-height: 180px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.removeImage {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 99px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+
+
+
+.overallRating {
+    font-size: 38px;
+}
+
+.ratingBar {
+    border-radius: 99px;
+    border: 1px solid #999;
+    padding: 3px;
+    background: #fff;
+    height: 1.2rem;
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.ratingBar .progress-bar {
+    background: #ff9529;
+    border-radius: 99px;
+}
 
 
 
@@ -142,9 +222,10 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'A Love of Thunder';
     font-size: 16px;
     font-weight: 400;
-    color: #999999;
+    color: #000;
     display: block;
     word-break: break-word;
+    margin-bottom: 5px;
 }
 
 .mainText {
@@ -152,7 +233,21 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
     color: #000;
     word-break: break-word;
+    margin-bottom: 5px;
 }
+
+.deleteButton {
+    font-size: 16px;
+    background: #fff;
+    color: #ff0000;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+}
+
+
+
+
+
 
 /*---------- Custom Scrollbar Start ----------*/
 
@@ -179,6 +274,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*---------- Custom Scrollbar End ----------*/
+
 
 
 
@@ -215,6 +311,10 @@ h1, h2, h3, h4, h5, h6 {
     color: #b2b2b2;
 }
 
+select.siteInput {
+    appearance: auto;
+}
+
 textarea.siteInput {
     border-radius: 10px;
 }
@@ -227,7 +327,7 @@ textarea.siteInput {
 
 
 
-/*---------- Custom Modal End ----------*/
+/*---------- Custom Modal Start ----------*/
 .closeModal {
     position: absolute;
     top: -10px;
@@ -255,7 +355,7 @@ textarea.siteInput {
 
 
 
-/*---------- Table Css Start ----------*/
+/*---------- Custom Table Css Start ----------*/
 .customTable {
     text-align: center;
     border-collapse: separate;
@@ -266,6 +366,7 @@ textarea.siteInput {
 
 .customTable th {
     text-transform: uppercase;
+    vertical-align: middle;
 }
 
 .customTable tbody tr {
@@ -275,10 +376,6 @@ textarea.siteInput {
 
 .customTable tr th, .customTable tr td {
     padding: 1rem 2.5rem;
-}
-
-.customTable tr th {
-    white-space: nowrap;
 }
 
 .customTable tbody tr td {
@@ -334,6 +431,7 @@ textarea.siteInput {
 }
 
 .statusBar {
+    display: inline-block;
     border: 2px dotted;
     border-radius: 99px;
     padding: 10px 20px;
@@ -364,7 +462,106 @@ textarea.siteInput {
     border-color: #ff0000;
 }
 
-/*---------- Table Css End ----------*/
+/*---------- Custom Table Css End ----------*/
+
+
+
+
+
+/*---------- Dash Table Css Start ----------*/
+.dashTable {
+    text-align: left;
+    border-collapse: collapse;
+    vertical-align: middle;
+    padding: 0px;
+}
+
+.dashTable th {
+    text-transform: uppercase;
+    vertical-align: middle;
+    font-family: 'A Love of Thunder';
+    font-weight: 400;
+}
+
+.dashTable tr th, .dashTable tr td {
+    padding: 1rem 2.5rem;
+}
+
+.dashTable tbody tr td {
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
+}
+
+.dashTable img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/*---------- Dash Table Css End ----------*/
+
+
+
+
+
+
+
+/*---------- Total Table Css Start ----------*/
+.totalTableWrapper {
+    display: flex;
+    justify-content: end;
+}
+
+.totalTable tbody tr:last-child {
+    border-top: 1px solid #e0e0e0;
+}
+
+/*---------- Total Table Css End ----------*/
+
+
+
+
+
+
+/*---------- Comment Box Css Start ----------*/
+.commentBox {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.commentInfo {
+    display: flex;
+    gap: 20px;
+}
+
+.commentatorImage {
+    height: 60px;
+    aspect-ratio: 1/1;
+    border: 2px solid #e4e4e4;
+    border-radius: 99px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.commentatorImage img {
+    height: 60px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 99px;
+}
+
+.commentText {
+    color: #999;
+}
+
+/*---------- Comment Box Css End ----------*/
+
+
+
 
 
 
@@ -372,7 +569,7 @@ textarea.siteInput {
 /*---------- Button Link Css Start ----------*/
 .buttonLinks {
     display: inline-block;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1;
     font-weight: 700;
     text-decoration: none;
@@ -384,14 +581,43 @@ textarea.siteInput {
     transition: 0.3s linear;
     cursor: pointer;
     background: #fff;
+
+}
+
+.buttonLinkRed {
+    background: #fff;
     color: var(--primaryColor);
     border-color: var(--primaryColor);
     box-shadow: 0px 0px 4px var(--primaryColor);
 }
 
-.buttonLinks:hover {
+.buttonLinkRed:hover {
     color: #fff;
     background: var(--primaryColor);
+}
+
+.buttonLinkGreen {
+    background: #fff;
+    color: #2FC403;
+    border-color: #2FC403;
+    box-shadow: 0px 0px 4px #2FC403;
+}
+
+.buttonLinkGreen:hover {
+    color: #fff;
+    background: #2FC403;
+}
+
+.buttonLinkGray {
+    background: #fff;
+    color: #999;
+    border-color: #999;
+    box-shadow: 0px 0px 4px #999;
+}
+
+.buttonLinkGray:hover {
+    color: #fff;
+    background: #999;
 }
 
 /*---------- Button Link Css End ----------*/
@@ -412,7 +638,7 @@ textarea.siteInput {
 
 .dashInput {
     background: #FBFBFB;
-    border: 1px solid #f1f1f1;
+    border: 1px solid #e0e0e0;
     font-weight: 500;
     padding: 12px 25px;
     font-size: 16px;
@@ -430,6 +656,11 @@ textarea.siteInput {
 select.dashInput {
     outline: none;
     min-width: 200px;
+    appearance: auto;
+}
+
+textarea.dashInput {
+    border-radius: 10px;
 }
 
 select.dashInput.sm-dropdown {
@@ -484,6 +715,75 @@ select.dashInput.sm-dropdown {
 
 
 
+
+
+
+/*---------- Custom Tabs Start ----------*/
+.customTabs .nav-tabs {
+    border: none;
+}
+
+.customTabs .nav-tabs .nav-link {
+    font-family: 'A Love of Thunder';
+    font-size: 20px;
+    line-height: 1;
+    color: #999;
+    border: none;
+}
+
+.customTabs .nav-tabs .nav-link.active, .customTabs .nav-item.show .nav-link {
+    color: #000;
+    border: none;
+    border-bottom: 2px solid #000;
+}
+
+.customTabs .nav-tabs .nav-link:hover, .customTabs .nav-tabs .nav-link:focus {
+    color: #000;
+    border: none;
+    border-bottom: 2px solid #000;
+}
+
+/*---------- Custom Tabs End ----------*/
+
+
+
+
+
+
+
+/*---------- Custom Accordion Start ----------*/
+.customAccordion .card {
+    border: none !important;
+}
+
+.customAccordion .card-header {
+    padding: 0 !important;
+    border: none !important;
+}
+
+.customAccordion .card-header button {
+    font-family: 'A Love of Thunder';
+    font-size: 18px;
+    line-height: 1;
+    width: 100%;
+    text-align: left;
+    color: #fff;
+    background: var(--primaryColor);
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.customAccordion .card-header button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/*---------- Custom Accordion End ----------*/
+
+
+
+
 @media screen and (max-width: 1399px) {
     .rightInput {
         width: 300px;
@@ -508,9 +808,4 @@ select.dashInput.sm-dropdown {
         font-size: 20px;
     }
 
-    .buttonLinks {
-        font-size: 14px;
-        border: 1px solid;
-        padding: 12px 30px;
-    }
 }

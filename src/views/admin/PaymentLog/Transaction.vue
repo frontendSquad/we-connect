@@ -1,23 +1,57 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xl-6 mb-3">
+      <div class="col-12 mb-3">
         <div class="backTitleWrap">
+          <button type="button" class="notBtn me-2" @click="$router.go(-1)">
+            <font-awesome-icon :icon="['fas', 'arrow-left']" />
+          </button>
           <div class="pageTitleInner">
-            <h1 class="pageTitle">Vendor Management</h1>
+            <h1 class="pageTitle">Payment Log</h1>
           </div>
         </div>
-      </div>
-      <div class="col-xl-6 mb-3 text-end">
-        <router-link to="/admin/vendor/vendor-listing/blocked-vendor" class="buttonLinks buttonLinkRed"
-          >Blocked Vendors</router-link
-        >
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-12 mb-4">
         <div class="secondaryWrapper">
-        <h2 class="secondaryTitle">Vendor Listing</h2>
+          <h2 class="secondaryTitle">Transaction</h2>
+          <h6 class="idBar">Store ID: {{ idStatus }}</h6>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="d-lg-flex align-items-center justify-content-between mb-3">
+          <div class="topFilter">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="userIimageFrame my-3">
+                <img
+                  src="./../../../assets/images/userPlaceholder.png"
+                  alt="User Image"
+                  class="userImage img-fluid"
+                />
+              </div>
+              <div class="info">
+                <h6 class="text-uppercase">Mark Carson</h6>
+              </div>
+            </div>
+            <h3 class="secondaryTitle mb-3">View Transaction</h3>
+          </div>
+          <div class="topFilter">
+            <p class="mainLabel">Enter Order ID</p>
+            <div class="d-flex align-items-baseline">
+              <BaseInput
+                labelClass="mainLabel"
+                iname="order"
+                itype="text"
+                inputClass="dashInput"
+              />
+              <BaseButton
+                type="button"
+                btnText="Search"
+                class="baseButton primaryButton ms-2"
+              />
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-12">
@@ -86,18 +120,20 @@
           <table class="table table-borderless customTable">
             <thead>
               <tr>
-                <th v-for="(heading, index) in VendorLisitingHead" :key="index">
+                <th v-for="(heading, index) in transactionHead" :key="index">
                   {{ heading }}
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in VendorLisiting" :key="index">
+              <tr v-for="(item, index) in transactionList" :key="index">
                 <td>{{ index + 1 }}</td>
                 <td>{{ item.id }}</td>
-                <td>{{ item.vendorname }}</td>
-                <td>{{ item.email }}</td>
                 <td>{{ item.date }}</td>
+                <td>{{ item.name }}</td>
+                <td>${{ item.amount }}</td>
+                <td>${{ item.commission }}</td>
+                <td>${{ item.vendorAmount }}</td>
                 <td>
                   <div class="remove-box">
                     <b-dropdown
@@ -117,7 +153,7 @@
                       </template>
                       <b-dropdown-item>
                         <router-link
-                         :to="{name:'ViewVendor', params:{ status: item.id }}"
+                          to="#"
                           class="text-decoration-none"
                         >
                           <div class="dropdownContent">
@@ -129,50 +165,12 @@
                                 />
                               </div>
                               <div class="mediaRight">
-                                <span class="text-dark">View Profile</span>
+                                <span class="text-dark">View</span>
                               </div>
                             </div>
                           </div>
                         </router-link>
                       </b-dropdown-item>
-                      <b-dropdown-item>
-                        <router-link
-                          :to="{name:'EditVendor', params:{ status: item.id }}"
-                          class="text-decoration-none"
-                        >
-                          <div class="dropdownContent">
-                            <div class="d-flex align-items-center">
-                              <div class="mediaLeft">
-                                <font-awesome-icon
-                                  :icon="['fas', 'pen-to-square']"
-                                  class="text-dark"
-                                />
-                              </div>
-                              <div class="mediaRight">
-                                <span class="text-dark">Edit</span>
-                              </div>
-                            </div>
-                          </div>
-                        </router-link>
-                      </b-dropdown-item>
-                      <b-dropdown-item-button
-                        class="notBtn"
-                        @click="$bvModal.show('blockVendor')"
-                      >
-                        <div class="dropdownContent">
-                          <div class="d-flex align-items-center">
-                            <div class="mediaLeft">
-                              <font-awesome-icon
-                                :icon="['fas', 'ban']"
-                                class="text-dark"
-                              />
-                            </div>
-                            <div class="mediaRight">
-                              <span class="text-dark">Block</span>
-                            </div>
-                          </div>
-                        </div>
-                      </b-dropdown-item-button>
                     </b-dropdown>
                   </div>
                 </td>
@@ -181,7 +179,7 @@
           </table>
         </div>
       </div>
-        <div class="col-12">
+      <div class="col-12">
         <div class="row align-items-center px-3 w-100 px-4">
           <div class="col-sm-12 col-md-6 mb-sm-0 mb-3">
             <div
@@ -194,115 +192,83 @@
             </div>
           </div>
           <div class="col-sm-12 col-md-6 d-flex justify-content-end">
-            <b-pagination
-              class="customPagination"
-            ></b-pagination>
+            <b-pagination class="customPagination"></b-pagination>
           </div>
         </div>
       </div>
     </div>
-
-    <b-modal id="blockVendor" centered hide-footer hide-header>
-      <div class="customModal">
-        <div class="modalHeader">
-          <button class="closeModal" @click="$bvModal.hide('blockVendor')">
-            <font-awesome-icon :icon="['fas', 'times']" />
-          </button>
-        </div>
-        <div class="modalBody">
-          <div class="modalContent text-center">
-            <img
-              src="./../../../../assets/images/question.png"
-              alt=""
-              class="modalImage mb-3"
-            />
-            <h2 class="modalHeading">Block Vendor</h2>
-            <p class="modalText">Are you sure you want to block this vendor?</p>
-            <div class="modalForm my-4">
-              <BaseButton
-                type="button"
-                btnText="Yes"
-                class="baseButton primaryButton mx-2"
-                @click="
-                  $bvModal.hide('blockVendor');
-                  $bvModal.show('blockVendor2');
-                "
-              />
-              <BaseButton
-                type="button"
-                btnText="No"
-                class="baseButton secondaryButton mx-2"
-                @click="$bvModal.hide('blockVendor')"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </b-modal>
-
-    <BaseModal
-      modalId="blockVendor2"
-      :modalSuccess="true"
-      modalText="Vendor ABC has been Blocked."
-      btnText="Ok"
-    />
   </div>
 </template>
 
 <script>
-import BaseButton from "./../../../../components/BaseButton.vue";
-import BaseModal from "./../../../../components/BaseModal.vue";
+import BaseButton from "./../../../components/BaseButton.vue";
+import BaseInput from "./../../../components/BaseInput.vue";
 
 export default {
-  name: "VendorListing",
+  name: "PaymentLog",
   components: {
     BaseButton,
-    BaseModal,
+    BaseInput,
   },
   data() {
     return {
-      VendorLisitingHead: [
+      idStatus: "",
+      transactionHead: [
         "S.No",
-        "Vendor ID",
-        "Vendor Name",
-        "Email Address",
-        "Registration Date",
+        "Order ID",
+        "Order Date",
+        "Product Name",
+        "Total Amount",
+        "My Commission",
+        "Amount for Vendor",
         "Action",
       ],
-      VendorLisiting: [
+      transactionList: [
         {
           id: "001",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
           date: "mm/dd/yyyy",
+          name: "Abc",
+          amount: "1234",
+          commission: "10",
+          vendorAmount: "10",
         },
         {
           id: "002",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
           date: "mm/dd/yyyy",
+          name: "Abc",
+          amount: "1234",
+          commission: "10",
+          vendorAmount: "10",
         },
         {
           id: "003",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
           date: "mm/dd/yyyy",
+          name: "Abc",
+          amount: "1234",
+          commission: "10",
+          vendorAmount: "10",
         },
         {
           id: "004",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
           date: "mm/dd/yyyy",
+          name: "Abc",
+          amount: "1234",
+          commission: "10",
+          vendorAmount: "10",
         },
         {
           id: "005",
-          vendorname: "Abc",
-          email: "abc@xyz.com",
           date: "mm/dd/yyyy",
+          name: "Abc",
+          amount: "1234",
+          commission: "10",
+          vendorAmount: "10",
         },
-       
       ],
     };
+  },
+  created() {
+    this.idStatus = this.$route.params.status;
   },
 };
 </script>
