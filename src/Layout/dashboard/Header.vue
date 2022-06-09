@@ -44,7 +44,7 @@
                     </p>
                   </div>
                   <router-link
-                    to="/admin/dashboard"
+                    to="/admin/notifications"
                     class="text-black fBold text-decoration-underline"
                     >View All</router-link
                   >
@@ -74,7 +74,7 @@
               </div>
             </template>
             <b-dropdown-item>
-              <router-link to="#" class="text-decoration-none">
+              <router-link to="/admin/profile" class="text-decoration-none">
                 <div class="dropdownContent">
                   <div class="d-flex align-items-center">
                     <div class="mediaLeft">

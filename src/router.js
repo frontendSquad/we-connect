@@ -2,12 +2,12 @@ import Vue from "vue";
 import Router from "vue-router";
 
 import AuthLayout from "./Layout/authLayout/authLayout.vue";
-import Login from "./views/admin/auth/Login.vue";
+import Login from "./views/admin/Auth/Login.vue";
 
 import DashboardLayout from "./Layout/dashboard/dashboardLayout.vue";
 
 
-import Dashboard from "./views/admin/dasboard/";
+import Dashboard from "./views/admin/Dashboard/";
 
 
 import UserManagement from "./views/admin/UserManagement/";
@@ -62,6 +62,16 @@ import Feedback from "./views/admin/Feedback/";
 import ViewFeedback from "./views/admin/Feedback/ViewFeedback.vue";
 
 
+import Newsletter from "./views/admin/Newsletter/";
+
+
+import Profile from './views/admin/HeaderPages/Profile.vue';
+import EditProfile from './views/admin/HeaderPages/EditProfile.vue';
+import Notifications from './views/admin/HeaderPages/Notifications.vue';
+import Error404 from './views/admin/HeaderPages/ErrorPage.vue';
+
+
+
 Vue.use(Router);
 
 export default new Router({
@@ -70,7 +80,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect:{
+            redirect: {
                 name: 'Login'
             }
         },
@@ -269,6 +279,31 @@ export default new Router({
                 name: 'ViewFeedback',
                 component: ViewFeedback,
                 path: 'feedback/view-feedback',
+            },
+            {
+                name: 'Newsletter',
+                component: Newsletter,
+                path: 'newsletter',
+            },
+            {
+                name: 'Profile',
+                component: Profile,
+                path: 'profile',
+            },
+            {
+                name: 'EditProfile',
+                component: EditProfile,
+                path: 'edit-profile',
+            },
+            {
+                name: 'Notifications',
+                component: Notifications,
+                path: 'notifications',
+            },
+            {
+                name: 'Error404',
+                component: Error404,
+                path: 'error',
             },
 
 

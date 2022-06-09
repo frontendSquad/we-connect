@@ -160,6 +160,15 @@
         >
       </div>
     </li>
+    <li class="nav-item navContent">
+      <div class="">
+        <router-link to="/admin/newsletter" class="nav-link text-light">
+          <font-awesome-icon :icon="['fas', 'file-lines']" /><span
+            >Newsletter</span
+          ></router-link
+        >
+      </div>
+    </li>
   </ul>
 </template>
 

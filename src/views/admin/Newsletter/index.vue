@@ -12,7 +12,7 @@
     <div class="row mb-3">
       <div class="col-12 mb-4">
         <div class="secondaryWrapper">
-          <h2 class="secondaryTitle">Feedback Listing</h2>
+          <h2 class="secondaryTitle">Newsletter Listing</h2>
         </div>
       </div>
       <div class="col-12">
@@ -81,17 +81,16 @@
           <table class="table table-borderless customTable">
             <thead>
               <tr>
-                <th v-for="(heading, index) in feedbackHead" :key="index">
+                <th v-for="(heading, index) in newsletterHead" :key="index">
                   {{ heading }}
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in feedbackList" :key="index">
+              <tr v-for="(item, index) in newsletterList" :key="index">
                 <td>{{ index + 1 }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.email }}</td>
-                <td>{{ item.sender }}</td>
                 <td>${{ item.date }}</td>
                 <td>
                   <div class="remove-box">
@@ -110,40 +109,17 @@
                           />
                         </div>
                       </template>
-                      <b-dropdown-item>
-                        <router-link
-                          to="/admin/feedback/view-feedback"
-                          class="text-decoration-none"
-                        >
-                          <div class="dropdownContent">
-                            <div class="d-flex align-items-center">
-                              <div class="mediaLeft">
-                                <font-awesome-icon
-                                  :icon="['fas', 'eye']"
-                                  class="text-dark"
-                                />
-                              </div>
-                              <div class="mediaRight">
-                                <span class="text-dark">View</span>
-                              </div>
-                            </div>
-                          </div>
-                        </router-link>
-                      </b-dropdown-item>
-                      <b-dropdown-item-button
-                        class="notBtn"
-                        @click="$bvModal.show('deleteFeedback')"
-                      >
+                      <b-dropdown-item-button>
                         <div class="dropdownContent">
                           <div class="d-flex align-items-center">
                             <div class="mediaLeft">
                               <font-awesome-icon
-                                :icon="['fas', 'trash']"
+                                :icon="['fas', 'file-lines']"
                                 class="text-dark"
                               />
                             </div>
                             <div class="mediaRight">
-                              <span class="text-dark">Delete</span>
+                              <span class="text-dark">Unsubscribe</span>
                             </div>
                           </div>
                         </div>
@@ -174,104 +150,40 @@
         </div>
       </div>
     </div>
-
-    <b-modal id="deleteFeedback" centered hide-footer hide-header>
-      <div class="customModal">
-        <div class="modalHeader">
-          <button class="closeModal" @click="$bvModal.hide('deleteFeedback')">
-            <font-awesome-icon :icon="['fas', 'times']" />
-          </button>
-        </div>
-        <div class="modalBody">
-          <div class="modalContent text-center">
-            <img
-              src="./../../../assets/images/question.png"
-              alt=""
-              class="modalImage mb-3"
-            />
-            <h2 class="modalHeading">Delete Feedback</h2>
-            <p class="modalText">Are you sure you want to delete this feedback?</p>
-            <div class="modalForm my-4">
-              <BaseButton
-                type="button"
-                btnText="Yes"
-                class="baseButton primaryButton mx-2"
-                @click="
-                  $bvModal.hide('deleteFeedback');
-                  $bvModal.show('deleteFeedback2');
-                "
-              />
-              <BaseButton
-                type="button"
-                btnText="No"
-                class="baseButton secondaryButton mx-2"
-                @click="$bvModal.hide('deleteFeedback')"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </b-modal>
-
-    <BaseModal
-      modalId="deleteFeedback2"
-      :modalSuccess="true"
-      modalText="Feedback has been deleted."
-      btnText="Ok"
-    />
-
   </div>
 </template>
 
 <script>
-import BaseButton from "./../../../components/BaseButton.vue";
-import BaseModal from "./../../../components/BaseModal.vue";
-
 export default {
-  name: "Feedback",
-  components: {
-    BaseButton,
-    BaseModal,
-  },
+  name: "newsletter",
+  components: {},
   data() {
     return {
-      feedbackHead: [
-        "S.No",
-        "Name",
-        "Email Address",
-        "Sender",
-        "Date",
-        "Action",
-      ],
-      feedbackList: [
+      newsletterHead: ["S.No", "Name", "Email Address", "Date", "Action"],
+      newsletterList: [
         {
           name: "Abc",
           email: "abc@xyz.com",
-          sender: "Vendor",
           date: "mm/dd/yyyy",
         },
         {
           name: "Abc",
           email: "abc@xyz.com",
-          sender: "Vendor",
           date: "mm/dd/yyyy",
         },
         {
           name: "Abc",
           email: "abc@xyz.com",
-          sender: "Vendor",
           date: "mm/dd/yyyy",
         },
         {
           name: "Abc",
           email: "abc@xyz.com",
-          sender: "Vendor",
           date: "mm/dd/yyyy",
         },
         {
           name: "Abc",
           email: "abc@xyz.com",
-          sender: "Vendor",
           date: "mm/dd/yyyy",
         },
       ],

@@ -25,7 +25,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .baseButton {
   display: inline-block;
   font-size: 16px;
@@ -36,6 +36,7 @@ export default {
   padding: 15px 40px;
   text-align: center;
   text-transform: uppercase;
+  text-decoration: none;
   transition: 0.3s linear;
   cursor: pointer;
 }
